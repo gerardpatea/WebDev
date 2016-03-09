@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <title>Test Website - @ViewBag.Title</title>
-    <link rel="stylesheet"  href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/lib/Font-Awesome/css/font-awesome.min.css" />
     <link rel="stylesheet" href="~/lib/bootswatch/spacelab/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
@@ -12,35 +12,56 @@
     <div id="sidebar">
         <img src="~/img/sirena_top_can_noshadow.png" alt="apa elegi" class="headshot" />
         <div>
-        <span id="username">Apa Elegi</span>
-    </div>
-        <ul class="menu">
+            <span id="username">Apa Elegi</span>
+        </div>
+        <ul class="nav">
             <li class="active"><a asp-controller="App" asp-action="Index">Home</a></li>
             <li><a asp-controller="App" asp-action="About">About</a></li>
             <li><a asp-controller="App" asp-action="Contact">Contact</a></li>
         </ul>
     </div>
     <div id="wrapper">
-        <div id="main">
-            <div>
-                <button id="sidebarToggle" class="btn btn-success btn-sm">
-                <i class="fa fa-angle-left"></i>
-                </button>
+        <nav class="navbar navbar-inverse">
+            <div class="container-fluid">
+                <ul class="nav navbar-nav navbar-left">
+                    <li>
+                        <button id="sidebarToggle" class="btn btn-success btn-sm">
+                            <i class="fa fa-angle-left"></i>
+                        </button>
+                    </li>
+                </ul>
+                <a asp-controller="App" asp-action="Index" class="navbar-brand">Test Website</a>
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="#" class="btn btn-sm btn-info">
+                            <i class="fa fa-save"></i> Save
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="btn btn-sm btn-info">
+                            <i class="fa fa-print"></i> Print
+                        </a>
+                    </li>
+                </ul>
             </div>
+        </nav>
+        <div id="main" class="container-fluid">
 
             <div>
                 @RenderBody()
             </div>
 
         </div>
-        <div id="footer">
-            <p class="text-primary">Gerard Inc. &copy;</p>
+        <div id="footer" class="container-fluid">
+            <div class="navbar navbar-inverse navbar-fixed-bottom">
+                <h4 class="text-center text-info">Gerard Inc. &copy;</h4>
+            </div>
         </div>
     </div>
     <script type="text/javascript" src="~/lib/jquery/dist/jquery.min.js"></script>
     <script type="text/javascript" src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="~/js/site.js"></script>
 
-    @RenderSection("Scripts",false)
+    @RenderSection("Scripts", false)
 </body>
 </html>
