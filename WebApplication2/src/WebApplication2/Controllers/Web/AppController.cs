@@ -35,8 +35,22 @@ namespace WebApplication2.Controllers.Web
         [HttpPost]
         public IActionResult Contact(ContactViewModel model)
         {
-            var email = Startup.Configuration["AppSettings:SiteEmailAddress"];
-            _mailService.SendMail(email, email, $"Contact page from: {model.Name}", model.Message);
+            if (ModelState.IsValid)
+            {
+                var email = Startup.Configuration["AppSettings:SiteEmailAddress"];
+
+                if (String.IsNullOrEmpty(email))
+                    ModelState.AddModelError("", "Email configuration is invalid");
+
+                var sent = _mailService.SendMail(email, email, $"Contact page from: {model.Name}", model.Message);
+
+                if (sent)
+                {
+                    ModelState.Clear();
+                    ViewBag.Message = "Mail sent! Thanks";
+                }
+            }
+
             return View();
         }
     }

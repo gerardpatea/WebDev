@@ -9,6 +9,8 @@ using Microsoft.Extensions.DependencyInjection;
 using WebApplication2.Services;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.PlatformAbstractions;
+using Autofac;
+using Autofac.Extensions.DependencyInjection;
 
 namespace WebApplication2
 {
@@ -29,15 +31,17 @@ namespace WebApplication2
 
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit http://go.microsoft.com/fwlink/?LinkID=398940
-        public void ConfigureServices(IServiceCollection services)
+        public IServiceProvider ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
 
-#if DEBUG
-            services.AddScoped<IMailService, DebugMailService>();
-#else
-            //test
-#endif
+
+            var builder = new ContainerBuilder();
+
+            builder.RegisterType<DebugMailService>().As<IMailService>();
+            builder.Populate(services);
+            var container =  builder.Build();
+            return container.Resolve<IServiceProvider>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
