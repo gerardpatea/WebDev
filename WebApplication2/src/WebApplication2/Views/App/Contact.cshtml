@@ -1,0 +1,18 @@
+﻿@model WebApplication2.ViewModels.ContactViewModel
+@{
+    ViewBag.Title = "Contacts";
+}
+
+<h2>Contacts</h2>
+
+<form>
+    <label asp-for="Name">Name</label>
+    <input asp-for="Name" />
+    <label type="email">Email</label>
+    <input type="email" asp-for="Email"/>
+    <label asp-for="Message">Message</label>
+    <textarea cols="40" rows="4" asp-for="Message"></textarea>
+    <div>
+        <input type="submit" value="Send Message"/>
+    </div>
+</form>
