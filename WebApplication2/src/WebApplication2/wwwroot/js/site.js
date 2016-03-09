@@ -23,15 +23,19 @@
 
     var $sideBarAndWrapper = $("#sidebar,#wrapper");
 
+    var $icon = $("#sidebarToggle i.fa");
+
     $("#sidebarToggle").on("click", function () {
 
         $sideBarAndWrapper.toggleClass("hide-sidebar");
 
         if ($sideBarAndWrapper.hasClass("hide-sidebar")) {
-            $(this).text("Show sidebar");
+            $icon.removeClass("fa fa-angle-left");
+            $icon.addClass("fa fa-angle-right");
         }
         else {
-            $(this).text("hide sidebar");
+            $icon.removeClass("fa fa-angle-right");
+            $icon.addClass("fa fa-angle-left");
         }
     });
 
